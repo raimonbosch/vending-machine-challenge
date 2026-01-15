@@ -1,0 +1,42 @@
+node_modules
+
+
+# ------------------------------
+# CodeIgniter 4
+# ------------------------------
+
+# Composer dependencies
+/vendor/
+/composer.lock
+/spark
+/builds
+
+# Writable directories (logs, cache, sessions, uploads, etc.)
+writable/cache/
+writable/logs/
+writable/session/
+writable/uploads/
+
+# Env file (optional: keep out of Git if storing secrets)
+.env
+
+# Node.js dependencies (if you use npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE / editor settings
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup or temporary files
+*.bak
+*.tmp
+*.swp
+*.lock

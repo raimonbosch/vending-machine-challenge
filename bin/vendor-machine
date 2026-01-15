@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Call the CI4 CLI command and capture its output
+output=$(php spark vendor_machine:run | tail -n +4)
+
+# Print the output
+echo "$output"

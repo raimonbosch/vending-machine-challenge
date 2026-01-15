@@ -1,0 +1,12 @@
+{
+  "name": "vendor-machine-challenge",
+  "version": "1.0.0",
+  "description": "Vendor Machine programming code challenge",
+  "scripts": {
+    "test": "jest ./tests --noStackTrace"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
