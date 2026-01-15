@@ -8,8 +8,6 @@ node_modules
 # Composer dependencies
 /vendor/
 /composer.lock
-/spark
-/builds
 
 # Writable directories (logs, cache, sessions, uploads, etc.)
 writable/cache/
