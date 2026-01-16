@@ -2,10 +2,14 @@
 
 namespace VendorMachine\Application;
 
-use VendorMachine\Domain\InvalidVendorMachineInputException;
+use VendorMachine\Application\Services\VendorMachineParserService;
+use VendorMachine\Domain\Exceptions\InvalidVendorMachineInputException;
 
 class VendorMachineUseCase
 {
+    public function __construct(private readonly VendorMachineParserService $vendorMachineParserService) {
+    }
+
     public function execute(array $params): string
     {
         if(empty($params)) {
@@ -16,6 +20,8 @@ class VendorMachineUseCase
         if($input[0] === null || !$this->isValidInput($input[0])) {
             throw new InvalidVendorMachineInputException("Input looks incorrect");
         }
+
+        $collection = $this->vendorMachineParserService->execute($input[0]);
 
         return "INSERT COIN";
     }

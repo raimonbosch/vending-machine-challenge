@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorMachine\Domain;
+namespace VendorMachine\Domain\Exceptions;
 
 class InvalidVendorMachineInputException extends \Exception
 {

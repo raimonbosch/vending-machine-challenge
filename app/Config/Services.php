@@ -3,6 +3,7 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
+use VendorMachine\Application\Services\VendorMachineParserService;
 use VendorMachine\Application\VendorMachineUseCase;
 
 /**
@@ -22,6 +23,8 @@ class Services extends BaseService
 {
     public static function vendorMachineUseCase(): VendorMachineUseCase
     {
-        return new VendorMachineUseCase();
+        return new VendorMachineUseCase(
+            new VendorMachineParserService(),
+        );
     }
 }

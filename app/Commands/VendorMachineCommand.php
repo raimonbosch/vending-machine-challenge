@@ -7,7 +7,7 @@ use CodeIgniter\CLI\CLI;
 use CodeIgniter\CLI\Commands;
 use Psr\Log\LoggerInterface;
 use VendorMachine\Application\VendorMachineUseCase;
-use VendorMachine\Domain\InvalidVendorMachineInputException;
+use VendorMachine\Domain\Exceptions\InvalidVendorMachineInputException;
 
 class VendorMachineCommand extends BaseCommand
 {
