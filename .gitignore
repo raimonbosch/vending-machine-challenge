@@ -28,6 +28,8 @@ yarn.lock
 *.sublime-project
 *.sublime-workspace
 .vscode/
+/build/
+package.xml
 
 # OS generated files
 .DS_Store

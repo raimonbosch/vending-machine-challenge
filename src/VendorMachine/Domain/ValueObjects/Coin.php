@@ -5,7 +5,7 @@ namespace VendorMachine\Domain\ValueObjects;
 use VendorMachine\Domain\Exceptions\InvalidCoinException;
 
 class Coin {
-    private $value;
+    private $cents;
 
     public const acceptedCoins = [
         '0.05',
@@ -17,7 +17,7 @@ class Coin {
     /**
      * @throws InvalidCoinException
      */
-    public function __construct($coin) {
+    public function __construct(string $coin) {
         if (!is_numeric($coin)) {
             throw new InvalidCoinException("Invalid coin");
         }
@@ -26,14 +26,14 @@ class Coin {
             throw new InvalidCoinException("Coin value is not accepted");
         }
 
-        $this->value = (float) $coin;
+        $this->cents = (int)(100*((float) $coin));
     }
 
     public static function isValid(string $action): bool {
         return in_array($action, self::acceptedCoins);
     }
 
-    public function getValue(): float {
-        return $this->value;
+    public function getCents(): int {
+        return $this->cents;
     }
 }
