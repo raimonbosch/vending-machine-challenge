@@ -11,4 +11,11 @@ interface ProductRepository
     public function deliver(string $productName): Product;
 
     public function recharge(array $products): void;
+
+    /**
+     * @return Product[]
+     */
+    public function getAvailableProducts(): array;
+
+    public function numberOfProducts(): int;
 }

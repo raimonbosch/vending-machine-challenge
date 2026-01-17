@@ -17,10 +17,12 @@ interface CoinRepository
     /**
      * @return Coin[]
      */
-    public function getChange(): array;
+    public function withdrawChange(): array;
 
     /**
      * @param Coin[] $coins
      */
     public function recharge(array $coins): void;
+
+    public function availableChange(): int;
 }

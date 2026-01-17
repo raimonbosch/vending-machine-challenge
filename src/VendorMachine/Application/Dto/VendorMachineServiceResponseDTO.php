@@ -10,7 +10,9 @@ class VendorMachineServiceResponseDTO
     public function __construct(
         private readonly ?Product $product,
         private readonly array $coinChange,
-        private readonly string $message
+        private readonly string $message,
+        private readonly ?int $numberOfProducts = null,
+        private readonly ?int $availableCents = null,
     ) {
     }
 
@@ -34,5 +36,27 @@ class VendorMachineServiceResponseDTO
     public function getProduct(): ?Product
     {
         return $this->product;
+    }
+
+    /**
+     * @return Product[]
+     */
+    public function getProducts(): array
+    {
+        if (!isset($this->products)) {
+            return [];
+        }
+
+        return $this->products;
+    }
+
+    public function getNumberOfProducts(): ?int
+    {
+        return $this->numberOfProducts;
+    }
+
+    public function getAvailableCents(): ?int
+    {
+        return $this->availableCents;
     }
 }

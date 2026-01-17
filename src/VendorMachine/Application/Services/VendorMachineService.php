@@ -42,14 +42,16 @@ class VendorMachineService
             case Action::RETURN_COIN:
                 return new VendorMachineServiceResponseDTO(
                     null,
-                    $this->userCoinsRepository->getChange(),
+                    $this->userCoinsRepository->withdrawChange(),
                     "Returning coins"
                 );
             case Action::SERVICE:
                 return new VendorMachineServiceResponseDTO(
                     null,
                     [],
-                    "SERVICE is not implemented yet"
+                    "SERVICE",
+                    $this->productRepository->numberOfProducts(),
+                    $this->cashierRepository->availableChange()
                 );
         }
 
@@ -73,9 +75,9 @@ class VendorMachineService
 
         try{
             $cashierCoins = $this->userCoinsRepository->subtract($product->priceInCents());
-            $changeCoins = $this->userCoinsRepository->getChange();
+            $changeCoins = $this->userCoinsRepository->withdrawChange();
         } catch (AllocationCoinsException $e) {
-            $cashierCoins = $this->userCoinsRepository->getChange();
+            $cashierCoins = $this->userCoinsRepository->withdrawChange();
             $changeCoins = $this->cashierRepository->subtract($availableCents - $product->priceInCents());
         }
 

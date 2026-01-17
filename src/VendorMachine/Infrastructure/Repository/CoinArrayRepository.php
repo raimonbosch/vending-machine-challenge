@@ -38,7 +38,7 @@ class CoinArrayRepository implements CoinRepository
     /**
      * @return Coin[]
      */
-    public function getChange(): array
+    public function withdrawChange(): array
     {
         $coinsToDeliver = [];
         foreach ($this->coins as $i => $coin) {
@@ -47,16 +47,6 @@ class CoinArrayRepository implements CoinRepository
         }
 
         return $coinsToDeliver;
-    }
-
-    private function popAllocatedCoin(Coin $allocatedCoin): void {
-        foreach ($this->coins as $i => $coin) {
-            if ($coin->getCents() === $allocatedCoin->getCents()) {
-                unset($this->coins[$i]);
-                $this->coins = array_values($this->coins);
-                return;
-            }
-        }
     }
 
     public function getAvailableCoins(): array {
@@ -71,6 +61,26 @@ class CoinArrayRepository implements CoinRepository
     {
         foreach ($coins as $coin) {
             $this->add($coin);
+        }
+    }
+
+    public function availableChange(): int
+    {
+        $availableCents = 0;
+        foreach ($this->coins as $coin) {
+            $availableCents += $coin->getCents();
+        }
+
+        return $availableCents;
+    }
+
+    private function popAllocatedCoin(Coin $allocatedCoin): void {
+        foreach ($this->coins as $i => $coin) {
+            if ($coin->getCents() === $allocatedCoin->getCents()) {
+                unset($this->coins[$i]);
+                $this->coins = array_values($this->coins);
+                return;
+            }
         }
     }
 }

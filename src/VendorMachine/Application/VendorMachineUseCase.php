@@ -54,6 +54,10 @@ class VendorMachineUseCase
             $output = $output . ', ' . implode(', ', $coins);
         }
 
+        if ($response->getMessage() === 'SERVICE') {
+            $output = $output . ', ' . (round($response->getAvailableCents() / 100, 2)) . ', ' . $response->getNumberOfProducts();
+        }
+
         return $output;
     }
 

@@ -48,4 +48,9 @@ class ProductArrayRepository implements ProductRepository
             $this->add($product);
         }
     }
+
+    public function numberOfProducts(): int
+    {
+        return count($this->getAvailableProducts());
+    }
 }
