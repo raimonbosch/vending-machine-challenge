@@ -51,7 +51,7 @@ class VendorMachineUseCase
         }
 
         if (count($coins) > 0) {
-            $output = $output . ',' . implode(',', $coins);
+            $output = $output . ', ' . implode(', ', $coins);
         }
 
         return $output;

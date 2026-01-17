@@ -36,8 +36,7 @@ class ProductArrayRepositoryTest extends CIUnitTestCase
         $water = new Water();
 
         $this->sut->add($juice);
-
-        $product = $this->sut->deliver($water->name());
+        $this->sut->deliver($water->name());
     }
 
 }
