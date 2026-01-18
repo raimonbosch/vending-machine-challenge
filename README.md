@@ -28,6 +28,18 @@ To run a set of prepared tests:
 
 > make test
 
+## Solution
+
+![Vending Machine Callenge](https://github.com/user-attachments/assets/64d1fcda-7921-4966-b13f-bb7395d48c84)
+
+The solution is based on having two CoinRepositories, one with the immediate coins that the user has put into the vending machine (user coins), another with all the rest of coins (cashier coins). This way the RETURN-COIN logic would be quite direct, since we only have to empty whatever coins we already have there.
+
+The second business class logic which is used by both coin repositories is the CoinAllocationService. This class is responsible of deducting a set of coins given an amount. The algorithm will sort the coins from larger to shorter and apply a O(n2) route in order to get the larger set of coins that match the amount requested.
+
+In general, if the user has given exact change all the logic will be handled by the user coins CoinRepository, but in case that we cannot have the exact amount, the calculation of the change to return will be withdrawn from the cashier coins CoinRepository. On both cases at the end all the coins from the user coins are passed to the cashier coins. Also the product requested is deducted from the ProductRepository.
+
+As you may have seen we are using mostly DDD patterns to do all.
+
 ## Requirements
 
 Docker should be enough as long as you already have a way to run Makefiles.
