@@ -21,7 +21,7 @@ build:
 	docker compose build
 
 
-## install:            Run the necessary services to build
+## install:            Run the necessary services to build, start docker and run tests
 install: build up test
 
 ## up:                  Run the necessary services to run repo
@@ -29,13 +29,13 @@ up:
 	docker compose up -d
 
 
-## run:                  Run the run such as make run EXPR="1, 0.25, 0.25, GET-SODA"
+## run:                  Run vendor machine such as make run EXPR="1, 0.25, 0.25, GET-SODA"
 run:
 ifndef EXPR
 	$(error EXPR is undefined. Example: make run EXPR="1, 0.25, 0.25, GET-SODA")
 endif
 	docker compose exec vendor-machine ./bin/vendor-machine "$(EXPR)"
 
-## run-interactive:                  Run the necessary services to run repo
+## run-interactive:                  Run vendor machine in a shell GUI
 run-interactive:
 	docker compose exec vendor-machine bash -c "php spark vendor_machine:interactive"
