@@ -1,6 +1,6 @@
 all: help
 
-.PHONY: help up test build shell run install
+.PHONY: help up test build shell run run-interactive install
 
 help: Makefile
 	@sed -n 's/^##//p' $<
@@ -12,6 +12,7 @@ shell:
 ## test:               Run all tests
 test:
 	docker compose exec vendor-machine composer install
+	docker compose exec -e XDEBUG_MODE=coverage vendor-machine ./vendor/bin/phpunit tests/VendorMachine/
 	docker compose exec vendor-machine npm install
 	docker compose exec vendor-machine npm test
 
@@ -34,3 +35,7 @@ ifndef EXPR
 	$(error EXPR is undefined. Example: make run EXPR="1, 0.25, 0.25, GET-SODA")
 endif
 	docker compose exec vendor-machine ./bin/vendor-machine "$(EXPR)"
+
+## run-interactive:                  Run the necessary services to run repo
+run-interactive:
+	docker compose exec vendor-machine bash -c "php spark vendor_machine:interactive"
