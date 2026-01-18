@@ -12,7 +12,7 @@ shell:
 ## test:               Run all tests
 test:
 	docker compose exec vendor-machine composer install
-	docker compose exec -e XDEBUG_MODE=coverage vendor-machine ./vendor/bin/phpunit tests/VendorMachine/
+	docker compose exec -e XDEBUG_MODE=coverage vendor-machine ./vendor/bin/phpunit tests/VendingMachine/
 	docker compose exec vendor-machine npm install
 	docker compose exec vendor-machine npm test
 
@@ -38,4 +38,4 @@ endif
 
 ## run-interactive:                  Run vendor machine in a shell GUI
 run-interactive:
-	docker compose exec vendor-machine bash -c "php spark vendor_machine:interactive"
+	docker compose exec vendor-machine bash -c "php spark vending_machine:interactive"

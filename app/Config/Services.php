@@ -3,14 +3,14 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
-use VendorMachine\Application\Services\VendorMachineParserService;
-use VendorMachine\Application\Services\VendorMachineService;
-use VendorMachine\Application\VendorMachineUseCase;
-use VendorMachine\Domain\Services\CoinAllocationService;
-use VendorMachine\Domain\Services\CoinRechargeService;
-use VendorMachine\Domain\Services\ProductRechargeService;
-use VendorMachine\Infrastructure\Repository\CoinArrayRepository;
-use VendorMachine\Infrastructure\Repository\ProductArrayRepository;
+use VendingMachine\Application\Services\VendingMachineParserService;
+use VendingMachine\Application\Services\VendingMachineService;
+use VendingMachine\Application\VendingMachineUseCase;
+use VendingMachine\Domain\Services\CoinAllocationService;
+use VendingMachine\Domain\Services\CoinRechargeService;
+use VendingMachine\Domain\Services\ProductRechargeService;
+use VendingMachine\Infrastructure\Repository\CoinArrayRepository;
+use VendingMachine\Infrastructure\Repository\ProductArrayRepository;
 
 /**
  * Services Configuration file.
@@ -27,7 +27,7 @@ use VendorMachine\Infrastructure\Repository\ProductArrayRepository;
  */
 class Services extends BaseService
 {
-    public static function vendorMachineUseCase(): VendorMachineUseCase
+    public static function vendingMachineUseCase(): VendingMachineUseCase
     {
         $coinRechargeService = new CoinRechargeService();
         $productRechargeService = new ProductRechargeService();
@@ -36,9 +36,9 @@ class Services extends BaseService
         $productRepository = new ProductArrayRepository();
         $productRepository->recharge($productRechargeService->getRechargeProducts());
 
-        return new VendorMachineUseCase(
-            new VendorMachineParserService(),
-            new VendorMachineService(
+        return new VendingMachineUseCase(
+            new VendingMachineParserService(),
+            new VendingMachineService(
                 new CoinArrayRepository(new CoinAllocationService()),
                 $cashierRepository,
                 $productRepository
