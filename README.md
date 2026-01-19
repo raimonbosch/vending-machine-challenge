@@ -28,6 +28,15 @@ To run a set of prepared tests:
 
 > make test
 
+Alternatively, you can init the interactive runner directly with docker compose commands:
+> docker compose build
+> 
+> docker compose up -d
+> 
+> docker compose exec vending-machine composer install
+> 
+> docker compose exec vending-machine bash -c "php spark vending_machine:interactive"
+
 ## Solution
 
 ![Vending Machine Callenge](https://github.com/user-attachments/assets/64d1fcda-7921-4966-b13f-bb7395d48c84)
